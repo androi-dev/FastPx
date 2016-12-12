@@ -18,11 +18,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class PxListActivity extends AppCompatActivity {
@@ -52,14 +52,14 @@ public class PxListActivity extends AppCompatActivity {
         final Call<SearchResults> results = service.searchPhotos("car");
         results.enqueue(new Callback<SearchResults>() {
             @Override
-            public void onResponse(Response<SearchResults> response, Retrofit retrofit) {
-                if (response.isSuccess()) {
+            public void onResponse(Call<SearchResults> call, Response<SearchResults> response) {
+                if (response.isSuccessful()) {
                     success(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<SearchResults> call, Throwable t) {
                 failure(t.getMessage());
             }
         });
