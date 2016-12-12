@@ -12,4 +12,7 @@ public interface PxService {
 
     @GET("/v1/photos/search?image_size=4&consumer_key=" + CONSUMER_KEY)
     Call<SearchResults> searchPhotos(@Query("term") String query);
+
+    @GET("/v1/photos?image_size=4&feature=user&consumer_key=" + CONSUMER_KEY)
+    Call<SearchResults> usernamePhotos(@Query("username") String username);
 }
